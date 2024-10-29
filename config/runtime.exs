@@ -1155,6 +1155,10 @@ config :indexer, Indexer.Fetcher.Scroll.BridgeL2.Supervisor, disabled?: ConfigHe
 
 config :indexer, Indexer.Fetcher.Scroll.Batch.Supervisor, disabled?: ConfigHelper.chain_type() != :scroll
 
+config :indexer, Indexer.Fetcher.Zilliqa.ScillaSmartContracts.Supervisor,
+  enabled: ConfigHelper.chain_type() == :zilliqa,
+  disabled?: ConfigHelper.chain_type() != :zilliqa
+
 Code.require_file("#{config_env()}.exs", "config/runtime")
 
 for config <- "../apps/*/config/runtime/#{config_env()}.exs" |> Path.expand(__DIR__) |> Path.wildcard() do
